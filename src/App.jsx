@@ -1603,14 +1603,20 @@ function Onboarding({ onComplete }) {
 // ── APP ────────────────────────────────────────────────────────────────────────
 
 export default function App() {
-  const [client, setClient] = useState(null);
+ const STORAGE_KEY = "posture_align_data";
+function loadData() {
+  try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}"); } catch { return {}; }
+}
+function saveData(data) {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+}
+  const savedData = loadData(); const [client, setClient] = useState(savedData.client || null);
   const [screen, setScreen] = useState("home");
-  const [program, setProgram] = useState([]);
-
-  function handleOnboard(form) { setClient({ ...form, id:Date.now().toString(), createdAt:new Date().toISOString() }); }
+  const [program, setProgram] = useState(savedData.program || []);;
+  function handleOnboard(form) { const newClient = { ...form, id:Date.now().toString(), createdAt:new Date() }; setClient(newClient); saveData({ client: newClient, program: [] }); } { setClient({ ...form, id:Date.now().toString(), createdAt:new Date().toISOString() }); }
   function updateClient(data)  { setClient(prev => ({ ...prev, ...data })); }
-  function addToProgram(ex, region) { setProgram(prev => prev.some(p=>p.ex.id===ex.id)?prev.filter(p=>p.ex.id!==ex.id):[...prev,{ex,region}]); }
-  function removeFromProgram(exId)  { setProgram(prev => prev.filter(p=>p.ex.id!==exId)); }
+  function addToProgram(ex, region) { const updated = program.some(p=>p.ex.id===ex.id) ? program : [...program, {ex, region}]; setProgram(updated); saveData({ client, program: updated }); } { setProgram(prev => prev.some(p=>p.ex.id===ex.id)?prev.filter(p=>p.ex.id!==ex.id):[...prev,{ex,region}]); }
+  function removeFromProgram(exId) { const updated = program.filter(p=>p.ex.id!==exId); setProgram(updated); saveData({ client, program: updated }); }  { setProgram(prev => prev.filter(p=>p.ex.id!==exId)); }
 
   if (!client) return <Onboarding onComplete={handleOnboard}/>;
 
