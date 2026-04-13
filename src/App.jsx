@@ -1602,7 +1602,7 @@ function Onboarding({ onComplete }) {
 
 // ── APP ────────────────────────────────────────────────────────────────────────
 
-export default function App() {
+export default function App() { const STORAGE_KEY = "posture_align_data"; function loadData() { try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}"); } catch { return {}; } } function saveData(d) { localStorage.setItem(STORAGE_KEY, JSON.stringify(d)); } const saved = loadData();
  const STORAGE_KEY = "posture_align_data";
 function loadData() {
   try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}"); } catch { return {}; }
