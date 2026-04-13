@@ -1613,8 +1613,7 @@ function saveData(data) {
   const savedData = loadData(); const [client, setClient] = useState(savedData.client || null);
   const [screen, setScreen] = useState("home");
   const [program, setProgram] = useState(savedData.program || []);;
-  function handleOnboard(form) { const newClient = { ...form, id:Date.now().toString(), createdAt:new Date() }; setClient(newClient); saveData({ client: newClient, program: [] }); } { setClient({ ...form, id:Date.now().toString(), createdAt:new Date().toISOString() }); }
-  function updateClient(data)  { setClient(prev => ({ ...prev, ...data })); }
+  function handleOnboard(form) { const newClient = { ...form, id:Date.now().toString(), createdAt:new Date() }; setClient(newClient); saveData({ client: newClient, program: [] }); }
   function addToProgram(ex, region) { const updated = program.some(p=>p.ex.id===ex.id) ? program : [...program, {ex, region}]; setProgram(updated); saveData({ client, program: updated }); } { setProgram(prev => prev.some(p=>p.ex.id===ex.id)?prev.filter(p=>p.ex.id!==ex.id):[...prev,{ex,region}]); }
   function removeFromProgram(exId) { const updated = program.filter(p=>p.ex.id!==exId); setProgram(updated); saveData({ client, program: updated }); }  { setProgram(prev => prev.filter(p=>p.ex.id!==exId)); }
 
