@@ -1614,7 +1614,7 @@ function saveData(data) {
   const [screen, setScreen] = useState("home");
   const [program, setProgram] = useState(savedData.program || []);;
   function handleOnboard(form) { const newClient = { ...form, id:Date.now().toString(), createdAt:new Date() }; setClient(newClient); saveData({ client: newClient, program: [] }); }
-  function addToProgram(ex, region) { const updated = program.some(p=>p.ex.id===ex.id) ? program : [...program, {ex, region}]; setProgram(updated); saveData({ client, program: updated }); } { setProgram(prev => prev.some(p=>p.ex.id===ex.id)?prev.filter(p=>p.ex.id!==ex.id):[...prev,{ex,region}]); }
+  function addToProgram(ex, region) { const updated = program.some(p=>p.ex.id===ex.id) ? program : [...program, {ex: ex, region: region}]; setProgram(updated); saveData({ client, program: updated }); }
   function removeFromProgram(exId) { const updated = program.filter(p=>p.ex.id!==exId); setProgram(updated); saveData({ client, program: updated }); }  { setProgram(prev => prev.filter(p=>p.ex.id!==exId)); }
 
   if (!client) return <Onboarding onComplete={handleOnboard}/>;
