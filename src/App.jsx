@@ -1506,7 +1506,7 @@ function ProgramScreen({ program, onRemove }) {
   );
 }
 
-function ProfileScreen({ client, onUpdate }) {
+function ProfileScreen({ client, onUpdate, onReset }) {
   const [editing, setEditing] = useState(false);
   const [form, setForm] = useState({ name:client?.name||"", age:client?.age||"", occupation:client?.occupation||"", goals:client?.goals||"" });
   return (
@@ -1560,11 +1560,12 @@ function ProfileScreen({ client, onUpdate }) {
           )}
         </div>
       )}
+      <div style={{ marginTop:24 }}>
+        <button onClick={onReset} style={{ width:"100%", background:"transparent", color:COLORS.warn, border:`1px solid ${COLORS.warn}55`, borderRadius:10, padding:14, cursor:"pointer", fontSize:14, fontWeight:700 }}>Start Over</button>
+      </div>
     </div>
   );
-}
-
-function Onboarding({ onComplete }) {
+}({ onComplete }) {
   const [step, setStep] = useState(0);
   const [form, setForm] = useState({ name:"", age:"", occupation:"", goals:"" });
   const steps = [
@@ -1613,6 +1614,7 @@ export default function App() {
   function handleOnboard(form) { const c = { ...form, id:Date.now().toString(), createdAt:new Date() }; setClient(c); saveData({ client: c, program: [] }); }
   function addToProgram(ex, region) { const updated = program.some(p=>p.ex.id===ex.id) ? program : [...program, {ex, region}]; setProgram(updated); saveData({ client, program: updated }); }
   function updateClient(data) { const updated = { ...client, ...data }; setClient(updated); saveData({ client: updated, program }); }
+  function resetApp() { if (window.confirm("This will clear all your data and start over. Are you sure?")) { localStorage.removeItem(STORAGE_KEY); setClient(null); setProgram([]); } }
   function removeFromProgram(exId) { const updated = program.filter(p=>p.ex.id!==exId); setProgram(updated); saveData({ client, program: updated }); }
 
   if (!client) return <Onboarding onComplete={handleOnboard}/>;
@@ -1638,7 +1640,7 @@ export default function App() {
         {screen==="massage" && <MassageScreen client={client}/>}
         {screen==="library" && <LibraryScreen client={client} onAddToProgram={addToProgram} program={program}/>}
         {screen==="program" && <ProgramScreen program={program} onRemove={removeFromProgram}/>}
-        {screen==="profile" && <ProfileScreen client={client} onUpdate={updateClient}/>}
+        {screen==="profile" && <ProfileScreen client={client} onUpdate={updateClient} onReset={resetApp}/>}
       </div>
 
       <div style={{ position:"fixed", bottom:0, left:"50%", transform:"translateX(-50%)", width:"100%", maxWidth:480, background:COLORS.surface, borderTop:`1px solid ${COLORS.border}`, display:"flex", padding:"8px 0 12px", zIndex:10 }}>
@@ -1651,4 +1653,4 @@ export default function App() {
       </div>
     </div>
   );
-} 
+}
