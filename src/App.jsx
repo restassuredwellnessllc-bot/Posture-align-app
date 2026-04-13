@@ -1,4 +1,4 @@
- import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 
 const COLORS = {
   bg: "#0F1117", surface: "#181C26", card: "#1E2330", border: "#2A3045",
@@ -1602,20 +1602,17 @@ function Onboarding({ onComplete }) {
 
 // ── APP ────────────────────────────────────────────────────────────────────────
 
-export default function App() { const STORAGE_KEY = "posture_align_data"; function loadData() { try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}"); } catch { return {}; } } function saveData(d) { localStorage.setItem(STORAGE_KEY, JSON.stringify(d)); } const saved = loadData();
- const STORAGE_KEY = "posture_align_data";
-function loadData() {
-  try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}"); } catch { return {}; }
-}
-function saveData(data) {
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
-}
-  const savedData = loadData(); const [client, setClient] = useState(savedData.client || null);
+export default function App() {
+  const STORAGE_KEY = "posture_align_data";
+  function loadData() { try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}"); } catch { return {}; } }
+  function saveData(d) { localStorage.setItem(STORAGE_KEY, JSON.stringify(d)); }
+  const saved = loadData();
+  const [client, setClient] = useState(saved.client || null);
   const [screen, setScreen] = useState("home");
-  const [program, setProgram] = useState(savedData.program || []);;
-  function handleOnboard(form) { const newClient = { ...form, id:Date.now().toString(), createdAt:new Date() }; setClient(newClient); saveData({ client: newClient, program: [] }); }
-  function addToProgram(ex, region) { const updated = program.some(p=>p.ex.id===ex.id) ? program : [...program, {ex: ex, region: region}]; setProgram(updated); saveData({ client, program: updated }); }
-  function removeFromProgram(exId) { const updated = program.filter(p=>p.ex.id!==exId); setProgram(updated); saveData({ client, program: updated }); }  { setProgram(prev => prev.filter(p=>p.ex.id!==exId)); }
+  const [program, setProgram] = useState(saved.program || []);
+  function handleOnboard(form) { const c = { ...form, id:Date.now().toString(), createdAt:new Date() }; setClient(c); saveData({ client: c, program: [] }); }
+  function addToProgram(ex, region) { const updated = program.some(p=>p.ex.id===ex.id) ? program : [...program, {ex, region}]; setProgram(updated); saveData({ client, program: updated }); }
+  function removeFromProgram(exId) { const updated = program.filter(p=>p.ex.id!==exId); setProgram(updated); saveData({ client, program: updated }); }
 
   if (!client) return <Onboarding onComplete={handleOnboard}/>;
 
