@@ -9,55 +9,55 @@ const COLORS = {
 // ── DATA ─────────────────────────────────────────────────────────────────────
 
 const REGIONS = [
-  { id: "cervical",  label: "Neck / Cervical", color: "#4ECDC4" },
-  { id: "thoracic",  label: "Upper Back",      color: "#06D6A0" },
-  { id: "lumbar",    label: "Lower Back",       color: "#FFD166" },
-  { id: "hips",      label: "Hips & Pelvis",   color: "#FF9F1C" },
-  { id: "shoulders", label: "Shoulders",        color: "#FF6B6B" },
+  { id: "cervical", label: "Neck / Cervical", color: "#4ECDC4" },
+  { id: "thoracic", label: "Upper Back", color: "#06D6A0" },
+  { id: "lumbar", label: "Lower Back", color: "#FFD166" },
+  { id: "hips", label: "Hips & Pelvis", color: "#FF9F1C" },
+  { id: "shoulders", label: "Shoulders", color: "#FF6B6B" },
 ];
 
 const POSTURE_ISSUES = [
-  { id: "fhp",      label: "Forward Head Posture",  regions: ["cervical","thoracic"] },
-  { id: "kyphosis", label: "Thoracic Kyphosis",     regions: ["thoracic","shoulders"] },
-  { id: "lordosis", label: "Lumbar Hyperlordosis",  regions: ["lumbar","hips"] },
-  { id: "apt",      label: "Anterior Pelvic Tilt",  regions: ["lumbar","hips"] },
-  { id: "ppt",      label: "Posterior Pelvic Tilt", regions: ["lumbar","hips"] },
-  { id: "rounded",  label: "Rounded Shoulders",     regions: ["thoracic","shoulders"] },
-  { id: "flatback", label: "Flat Back Syndrome",     regions: ["lumbar","thoracic"] },
+  { id: "fhp", label: "Forward Head Posture", regions: ["cervical","thoracic"] },
+  { id: "kyphosis", label: "Thoracic Kyphosis", regions: ["thoracic","shoulders"] },
+  { id: "lordosis", label: "Lumbar Hyperlordosis", regions: ["lumbar","hips"] },
+  { id: "apt", label: "Anterior Pelvic Tilt", regions: ["lumbar","hips"] },
+  { id: "ppt", label: "Posterior Pelvic Tilt", regions: ["lumbar","hips"] },
+  { id: "rounded", label: "Rounded Shoulders", regions: ["thoracic","shoulders"] },
+  { id: "flatback", label: "Flat Back Syndrome", regions: ["lumbar","thoracic"] },
 ];
 
 const EXERCISES = {
   cervical: [
-    { id:"c1", name:"Chin Tucks",                   sets:"3×10",      hold:"5s",  cue:"Gently retract chin as if making a 'double chin'. Lengthens suboccipitals and activates deep neck flexors.", difficulty:"Beginner" },
-    { id:"c2", name:"Neck Side Stretch",             sets:"2×30s",     hold:"30s", cue:"Tilt ear to shoulder, use hand for gentle overpressure. Targets SCM and scalenes.", difficulty:"Beginner" },
-    { id:"c3", name:"Upper Trap Stretch",            sets:"2×30s",     hold:"30s", cue:"Rotate head 45° then tilt. Deactivates overactive upper traps that pull shoulder girdle up.", difficulty:"Beginner" },
-    { id:"c4", name:"Deep Neck Flexor Activation",   sets:"3×8",       hold:"10s", cue:"Nod slowly while keeping chin tucked. Critical for countering forward head posture.", difficulty:"Intermediate" },
+    { id:"c1", name:"Chin Tucks", sets:"3×10", hold:"5s", cue:"Gently retract chin as if making a 'double chin'. Lengthens suboccipitals and activates deep neck flexors.", difficulty:"Beginner" },
+    { id:"c2", name:"Neck Side Stretch", sets:"2×30s", hold:"30s", cue:"Tilt ear to shoulder, use hand for gentle overpressure. Targets SCM and scalenes.", difficulty:"Beginner" },
+    { id:"c3", name:"Upper Trap Stretch", sets:"2×30s", hold:"30s", cue:"Rotate head 45° then tilt. Deactivates overactive upper traps that pull shoulder girdle up.", difficulty:"Beginner" },
+    { id:"c4", name:"Deep Neck Flexor Activation", sets:"3×8", hold:"10s", cue:"Nod slowly while keeping chin tucked. Critical for countering forward head posture.", difficulty:"Intermediate" },
   ],
   thoracic: [
-    { id:"t1", name:"Thoracic Extension on Foam Roller", sets:"2×10",    hold:"3s", cue:"Segment by segment extension. Opens anterior chest and reverses kyphotic curve.", difficulty:"Beginner" },
-    { id:"t2", name:"Cat-Cow Mobility",              sets:"3×10",      hold:"—",   cue:"Full spinal articulation — synchronize with breath. Flex/extend through each thoracic segment.", difficulty:"Beginner" },
-    { id:"t3", name:"Thoracic Rotation (Seated)",    sets:"3×10/side", hold:"2s",  cue:"Cross arms, rotate from mid-back not lumbar. Restores rotational ROM lost from desk posture.", difficulty:"Beginner" },
-    { id:"t4", name:"Prone Y-T-W",                   sets:"3×10 each", hold:"2s",  cue:"Lie prone, form letters with arms. Activates lower trapezius and posterior rotator cuff.", difficulty:"Intermediate" },
-    { id:"t5", name:"Band Pull-Apart",               sets:"3×15",      hold:"—",   cue:"Retract scapulae at end range. Counteracts protracted shoulders from typing/phone use.", difficulty:"Beginner" },
+    { id:"t1", name:"Thoracic Extension on Foam Roller", sets:"2×10", hold:"3s", cue:"Segment by segment extension. Opens anterior chest and reverses kyphotic curve.", difficulty:"Beginner" },
+    { id:"t2", name:"Cat-Cow Mobility", sets:"3×10", hold:"—", cue:"Full spinal articulation — synchronize with breath. Flex/extend through each thoracic segment.", difficulty:"Beginner" },
+    { id:"t3", name:"Thoracic Rotation (Seated)", sets:"3×10/side", hold:"2s", cue:"Cross arms, rotate from mid-back not lumbar. Restores rotational ROM lost from desk posture.", difficulty:"Beginner" },
+    { id:"t4", name:"Prone Y-T-W", sets:"3×10 each", hold:"2s", cue:"Lie prone, form letters with arms. Activates lower trapezius and posterior rotator cuff.", difficulty:"Intermediate" },
+    { id:"t5", name:"Band Pull-Apart", sets:"3×15", hold:"—", cue:"Retract scapulae at end range. Counteracts protracted shoulders from typing/phone use.", difficulty:"Beginner" },
   ],
   lumbar: [
-    { id:"l1", name:"90/90 Hip Flexor Stretch",      sets:"2×45s/side", hold:"45s", cue:"Posterior pelvic tilt maintained throughout. Targets iliopsoas — key driver of lumbar hyperlordosis.", difficulty:"Beginner" },
-    { id:"l2", name:"Dead Bug",                      sets:"3×8/side",  hold:"—",   cue:"Lower limbs contralaterally while pressing lumbar flat. Core stability without spinal loading.", difficulty:"Intermediate" },
-    { id:"l3", name:"Bird Dog",                      sets:"3×10/side", hold:"3s",  cue:"Extend opposite arm/leg. Trains multifidus and gluteus maximus coordination.", difficulty:"Intermediate" },
-    { id:"l4", name:"McGill Curl-Up",                sets:"3×6",       hold:"8s",  cue:"One knee bent, hands under lumbar. Activates rectus abdominis with minimal spinal flexion stress.", difficulty:"Beginner" },
-    { id:"l5", name:"Glute Bridge",                  sets:"3×12",      hold:"2s",  cue:"Drive through heels, squeeze glutes at top. Inhibits overactive hip flexors and activates posterior chain.", difficulty:"Beginner" },
+    { id:"l1", name:"90/90 Hip Flexor Stretch", sets:"2×45s/side", hold:"45s", cue:"Posterior pelvic tilt maintained throughout. Targets iliopsoas — key driver of lumbar hyperlordosis.", difficulty:"Beginner" },
+    { id:"l2", name:"Dead Bug", sets:"3×8/side", hold:"—", cue:"Lower limbs contralaterally while pressing lumbar flat. Core stability without spinal loading.", difficulty:"Intermediate" },
+    { id:"l3", name:"Bird Dog", sets:"3×10/side", hold:"3s", cue:"Extend opposite arm/leg. Trains multifidus and gluteus maximus coordination.", difficulty:"Intermediate" },
+    { id:"l4", name:"McGill Curl-Up", sets:"3×6", hold:"8s", cue:"One knee bent, hands under lumbar. Activates rectus abdominis with minimal spinal flexion stress.", difficulty:"Beginner" },
+    { id:"l5", name:"Glute Bridge", sets:"3×12", hold:"2s", cue:"Drive through heels, squeeze glutes at top. Inhibits overactive hip flexors and activates posterior chain.", difficulty:"Beginner" },
   ],
   hips: [
-    { id:"h1", name:"Pigeon Stretch",                sets:"2×60s/side", hold:"60s", cue:"Square hips, sink toward floor. Releases piriformis and external rotators causing SI joint dysfunction.", difficulty:"Intermediate" },
-    { id:"h2", name:"Clamshell",                     sets:"3×15/side", hold:"2s",  cue:"Band above knees, keep pelvis still. Isolates gluteus medius — critical for lateral pelvic stability.", difficulty:"Beginner" },
-    { id:"h3", name:"Side-Lying Hip Abduction",      sets:"3×12/side", hold:"—",   cue:"Toes slightly down, lead with heel. Strengthens glute med to prevent Trendelenburg gait.", difficulty:"Beginner" },
-    { id:"h4", name:"Deep Squat Hold",               sets:"3×30s",     hold:"30s", cue:"Heels down, chest up, knees out. Assesses and improves hip mobility, ankle dorsiflexion, thoracic extension.", difficulty:"Intermediate" },
+    { id:"h1", name:"Pigeon Stretch", sets:"2×60s/side", hold:"60s", cue:"Square hips, sink toward floor. Releases piriformis and external rotators causing SI joint dysfunction.", difficulty:"Intermediate" },
+    { id:"h2", name:"Clamshell", sets:"3×15/side", hold:"2s", cue:"Band above knees, keep pelvis still. Isolates gluteus medius — critical for lateral pelvic stability.", difficulty:"Beginner" },
+    { id:"h3", name:"Side-Lying Hip Abduction", sets:"3×12/side", hold:"—", cue:"Toes slightly down, lead with heel. Strengthens glute med to prevent Trendelenburg gait.", difficulty:"Beginner" },
+    { id:"h4", name:"Deep Squat Hold", sets:"3×30s", hold:"30s", cue:"Heels down, chest up, knees out. Assesses and improves hip mobility, ankle dorsiflexion, thoracic extension.", difficulty:"Intermediate" },
   ],
   shoulders: [
-    { id:"s1", name:"Doorway Pec Stretch",           sets:"2×30s each angle", hold:"30s", cue:"Three angles: low, mid, high. Systematically releases pec major, pec minor, and anterior deltoid.", difficulty:"Beginner" },
-    { id:"s2", name:"Sleeper Stretch",               sets:"2×30s/side", hold:"30s", cue:"Side-lying, use top arm to gently press wrist down. Targets posterior capsule tightness.", difficulty:"Beginner" },
-    { id:"s3", name:"Wall Angels",                   sets:"3×10",      hold:"2s at top", cue:"Flatten lumbar and cervical spine against wall throughout. Integrates scapular control with thoracic extension.", difficulty:"Intermediate" },
-    { id:"s4", name:"External Rotation with Band",   sets:"3×15/side", hold:"2s",  cue:"Elbow at 90°, rotate out. Strengthens infraspinatus and teres minor — common weak links in rotator cuff.", difficulty:"Beginner" },
+    { id:"s1", name:"Doorway Pec Stretch", sets:"2×30s each angle", hold:"30s", cue:"Three angles: low, mid, high. Systematically releases pec major, pec minor, and anterior deltoid.", difficulty:"Beginner" },
+    { id:"s2", name:"Sleeper Stretch", sets:"2×30s/side", hold:"30s", cue:"Side-lying, use top arm to gently press wrist down. Targets posterior capsule tightness.", difficulty:"Beginner" },
+    { id:"s3", name:"Wall Angels", sets:"3×10", hold:"2s at top", cue:"Flatten lumbar and cervical spine against wall throughout. Integrates scapular control with thoracic extension.", difficulty:"Intermediate" },
+    { id:"s4", name:"External Rotation with Band", sets:"3×15/side", hold:"2s", cue:"Elbow at 90°, rotate out. Strengthens infraspinatus and teres minor — common weak links in rotator cuff.", difficulty:"Beginner" },
   ],
 };
 
@@ -66,14 +66,14 @@ const EXERCISES = {
 const SYMPTOM_MAP = [
   { symptom: "Headache / Base of skull", sources: ["cervical"], muscles: ["Suboccipitals","Upper Trapezius","SCM"] },
   { symptom: "Neck stiffness / turning", sources: ["cervical","shoulders"], muscles: ["Levator Scapulae","SCM","Scalenes"] },
-  { symptom: "Upper back ache",          sources: ["thoracic","shoulders"], muscles: ["Rhomboids","Middle Trapezius","Serratus Anterior"] },
-  { symptom: "Between shoulder blades",  sources: ["thoracic","shoulders"], muscles: ["Rhomboids","Infraspinatus","Subscapularis"] },
-  { symptom: "Lower back pain",          sources: ["lumbar","hips"],        muscles: ["QL","Iliopsoas","Piriformis","Gluteus Medius"] },
-  { symptom: "Hip / Glute pain",         sources: ["hips"],                 muscles: ["Piriformis","Gluteus Medius","TFL","Hip Flexors"] },
-  { symptom: "Sacrum / SI joint",        sources: ["lumbar","hips"],        muscles: ["QL","Piriformis","Multifidus"] },
-  { symptom: "Shoulder front pain",      sources: ["shoulders","thoracic"], muscles: ["Pec Minor","Anterior Deltoid","Biceps Tendon"] },
-  { symptom: "Shoulder rear pain",       sources: ["shoulders"],            muscles: ["Infraspinatus","Teres Minor","Posterior Deltoid"] },
-  { symptom: "Chest tightness",          sources: ["thoracic","shoulders"], muscles: ["Pec Major","Pec Minor","Intercostals"] },
+  { symptom: "Upper back ache", sources: ["thoracic","shoulders"], muscles: ["Rhomboids","Middle Trapezius","Serratus Anterior"] },
+  { symptom: "Between shoulder blades", sources: ["thoracic","shoulders"], muscles: ["Rhomboids","Infraspinatus","Subscapularis"] },
+  { symptom: "Lower back pain", sources: ["lumbar","hips"], muscles: ["QL","Iliopsoas","Piriformis","Gluteus Medius"] },
+  { symptom: "Hip / Glute pain", sources: ["hips"], muscles: ["Piriformis","Gluteus Medius","TFL","Hip Flexors"] },
+  { symptom: "Sacrum / SI joint", sources: ["lumbar","hips"], muscles: ["QL","Piriformis","Multifidus"] },
+  { symptom: "Shoulder front pain", sources: ["shoulders","thoracic"], muscles: ["Pec Minor","Anterior Deltoid","Biceps Tendon"] },
+  { symptom: "Shoulder rear pain", sources: ["shoulders"], muscles: ["Infraspinatus","Teres Minor","Posterior Deltoid"] },
+  { symptom: "Chest tightness", sources: ["thoracic","shoulders"], muscles: ["Pec Major","Pec Minor","Intercostals"] },
 ];
 
 const MUSCLES = {
@@ -1018,11 +1018,11 @@ function BreathTimer({ seconds, onDone }) {
 
 function BodyDiagram({ selectedRegions, onToggle, compact }) {
   const clickZones = [
-    { id:"cervical",  label:"Neck",    x:109, y:56,  w:42, h:34 },
-    { id:"shoulders", label:"Shoulders",x:60, y:86,  w:140,h:26 },
-    { id:"thoracic",  label:"T-Spine", x:96,  y:88,  w:68, h:52 },
-    { id:"lumbar",    label:"L-Spine", x:98,  y:142, w:64, h:38 },
-    { id:"hips",      label:"Hips",    x:88,  y:178, w:84, h:34 },
+    { id:"cervical", label:"Neck", x:109, y:56, w:42, h:34 },
+    { id:"shoulders", label:"Shoulders",x:60, y:86, w:140,h:26 },
+    { id:"thoracic", label:"T-Spine", x:96, y:88, w:68, h:52 },
+    { id:"lumbar", label:"L-Spine", x:98, y:142, w:64, h:38 },
+    { id:"hips", label:"Hips", x:88, y:178, w:84, h:34 },
   ];
   return (
     <svg viewBox="0 0 260 290" style={{ width:"100%", maxWidth:compact?160:200, display:"block", margin:"0 auto" }}>
@@ -1283,9 +1283,9 @@ function MassageScreen({ client }) {
       <p style={{ color:COLORS.muted, fontSize:13, marginBottom:24 }}>Release, then stretch. Three ways to find your treatment.</p>
 
       {[
-        { id:"symptom",  icon:"⚡", title:"Where does it hurt?",    sub:"Find source muscles from your symptoms",   color:COLORS.warn },
-        { id:"explore",  icon:"🗺️", title:"Muscle Explorer",         sub:"Browse trigger points by region",          color:COLORS.accent },
-        { id:"protocol", icon:"🎯", title:"Quick Protocol",          sub:"Recommended for your assessed issues",     color:COLORS.green },
+        { id:"symptom", icon:"⚡", title:"Where does it hurt?", sub:"Find source muscles from your symptoms", color:COLORS.warn },
+        { id:"explore", icon:"🗺️", title:"Muscle Explorer", sub:"Browse trigger points by region", color:COLORS.accent },
+        { id:"protocol", icon:"🎯", title:"Quick Protocol", sub:"Recommended for your assessed issues", color:COLORS.green },
       ].map(item => (
         <div key={item.id} onClick={() => {
           if (item.id === "protocol") {
@@ -1378,11 +1378,11 @@ function HomeScreen({ client, onNavigate }) {
       </div>
       <div style={{ fontSize:11, color:COLORS.muted, fontFamily:"monospace", letterSpacing:2, marginBottom:12 }}>QUICK START</div>
       {[
-        { label:"📋 Postural Assessment", sub:"Identify your alignment issues",       screen:"assessment", color:COLORS.accent },
-        { label:"💆 Self-Massage",        sub:"Pin & stretch trigger point protocols",screen:"massage",    color:COLORS.purple },
-        { label:"🏋️ Exercise Library",    sub:"Browse corrective exercises",          screen:"library",    color:COLORS.green },
-        { label:"📝 My Program",          sub:"View your assigned exercises",         screen:"program",    color:COLORS.gold },
-        { label:"👤 My Profile",          sub:"Track progress & history",             screen:"profile",    color:"#A78BFA" },
+        { label:"📋 Postural Assessment", sub:"Identify your alignment issues", screen:"assessment", color:COLORS.accent },
+        { label:"💆 Self-Massage", sub:"Pin & stretch trigger point protocols",screen:"massage", color:COLORS.purple },
+        { label:"🏋️ Exercise Library", sub:"Browse corrective exercises", screen:"library", color:COLORS.green },
+        { label:"📝 My Program", sub:"View your assigned exercises", screen:"program", color:COLORS.gold },
+        { label:"👤 My Profile", sub:"Track progress & history", screen:"profile", color:"#A78BFA" },
       ].map(item => (
         <div key={item.screen} onClick={() => onNavigate(item.screen)}
           style={{ background:COLORS.card, border:`1px solid ${COLORS.border}`, borderRadius:14, padding:"16px 18px", marginBottom:10, cursor:"pointer", display:"flex", alignItems:"center", gap:14 }}>
@@ -1404,7 +1404,7 @@ function AssessmentScreen({ client, onSave }) {
   const [notes, setNotes] = useState(client?.notes||"");
   const [saved, setSaved] = useState(false);
   function toggleRegion(id) { setSelectedRegions(p => p.includes(id)?p.filter(r=>r!==id):[...p,id]); }
-  function toggleIssue(id)  { setSelectedIssues(p => p.includes(id)?p.filter(i=>i!==id):[...p,id]); }
+  function toggleIssue(id) { setSelectedIssues(p => p.includes(id)?p.filter(i=>i!==id):[...p,id]); }
   function handleSave() { onSave({ regions:selectedRegions, issues:selectedIssues, notes, assessedAt:new Date().toISOString() }); setSaved(true); setTimeout(()=>setSaved(false),2000); }
   return (
     <div style={{ padding:20 }}>
@@ -1568,10 +1568,10 @@ function Onboarding({ onComplete }) {
   const [step, setStep] = useState(0);
   const [form, setForm] = useState({ name:"", age:"", occupation:"", goals:"" });
   const steps = [
-    { label:"What's your name?",          key:"name",       placeholder:"Full name",                             hint:"We'll personalize your experience" },
-    { label:"Your age?",                  key:"age",        placeholder:"e.g. 34", type:"number",                hint:"Helps tailor exercise recommendations" },
-    { label:"What's your occupation?",    key:"occupation", placeholder:"e.g. Desk worker, Nurse, Tradesperson",  hint:"Occupational demands shape posture patterns" },
-    { label:"What are your goals?",       key:"goals",      placeholder:"e.g. Reduce lower back pain, improve posture", hint:"Tell us what you'd like to improve" },
+    { label:"What's your name?", key:"name", placeholder:"Full name", hint:"We'll personalize your experience" },
+    { label:"Your age?", key:"age", placeholder:"e.g. 34", type:"number", hint:"Helps tailor exercise recommendations" },
+    { label:"What's your occupation?", key:"occupation", placeholder:"e.g. Desk worker, Nurse, Tradesperson", hint:"Occupational demands shape posture patterns" },
+    { label:"What are your goals?", key:"goals", placeholder:"e.g. Reduce lower back pain, improve posture", hint:"Tell us what you'd like to improve" },
   ];
   const current = steps[step];
   return (
@@ -1612,16 +1612,17 @@ export default function App() {
   const [program, setProgram] = useState(saved.program || []);
   function handleOnboard(form) { const c = { ...form, id:Date.now().toString(), createdAt:new Date() }; setClient(c); saveData({ client: c, program: [] }); }
   function addToProgram(ex, region) { const updated = program.some(p=>p.ex.id===ex.id) ? program : [...program, {ex, region}]; setProgram(updated); saveData({ client, program: updated }); }
+  function updateClient(data) { const updated = { ...client, ...data }; setClient(updated); saveData({ client: updated, program }); }
   function removeFromProgram(exId) { const updated = program.filter(p=>p.ex.id!==exId); setProgram(updated); saveData({ client, program: updated }); }
 
   if (!client) return <Onboarding onComplete={handleOnboard}/>;
 
   const NAV = [
-    { id:"home",       icon:"🏠", label:"Home"    },
-    { id:"assessment", icon:"📋", label:"Assess"  },
-    { id:"massage",    icon:"💆", label:"Massage" },
-    { id:"library",    icon:"🏋️", label:"Library" },
-    { id:"program",    icon:"📝", label:"Program" },
+    { id:"home", icon:"🏠", label:"Home" },
+    { id:"assessment", icon:"📋", label:"Assess" },
+    { id:"massage", icon:"💆", label:"Massage" },
+    { id:"library", icon:"🏋️", label:"Library" },
+    { id:"program", icon:"📝", label:"Program" },
   ];
 
   return (
@@ -1632,12 +1633,12 @@ export default function App() {
       </div>
 
       <div style={{ paddingBottom:80 }}>
-        {screen==="home"       && <HomeScreen       client={client} onNavigate={setScreen}/>}
+        {screen==="home" && <HomeScreen client={client} onNavigate={setScreen}/>}
         {screen==="assessment" && <AssessmentScreen client={client} onSave={updateClient}/>}
-        {screen==="massage"    && <MassageScreen    client={client}/>}
-        {screen==="library"    && <LibraryScreen    client={client} onAddToProgram={addToProgram} program={program}/>}
-        {screen==="program"    && <ProgramScreen    program={program} onRemove={removeFromProgram}/>}
-        {screen==="profile"    && <ProfileScreen    client={client} onUpdate={updateClient}/>}
+        {screen==="massage" && <MassageScreen client={client}/>}
+        {screen==="library" && <LibraryScreen client={client} onAddToProgram={addToProgram} program={program}/>}
+        {screen==="program" && <ProgramScreen program={program} onRemove={removeFromProgram}/>}
+        {screen==="profile" && <ProfileScreen client={client} onUpdate={updateClient}/>}
       </div>
 
       <div style={{ position:"fixed", bottom:0, left:"50%", transform:"translateX(-50%)", width:"100%", maxWidth:480, background:COLORS.surface, borderTop:`1px solid ${COLORS.border}`, display:"flex", padding:"8px 0 12px", zIndex:10 }}>
@@ -1650,4 +1651,4 @@ export default function App() {
       </div>
     </div>
   );
-}
+} 
