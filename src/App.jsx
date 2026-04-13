@@ -1565,7 +1565,9 @@ function ProfileScreen({ client, onUpdate, onReset }) {
       </div>
     </div>
   );
-}({ onComplete }) {
+}
+
+function Onboarding({ onComplete }) {
   const [step, setStep] = useState(0);
   const [form, setForm] = useState({ name:"", age:"", occupation:"", goals:"" });
   const steps = [
